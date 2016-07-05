@@ -21,9 +21,9 @@ dependencies {
             "javax.servlet:javax.servlet-api:3.1.0")
 }
 
-task deployTomcat(type: Copy) {
+task deployTomcat(type: Copy, dependsOn: build) {
     from 'build/libs/'
-    into tomcatDir + '/webapps'
+    into (tomcatDir + '/webapps')
     include '*.war'
     rename (".*\\.war", webappName + '.war')
     file(tomcatDir + '/webapps/' + webappName).delete()
