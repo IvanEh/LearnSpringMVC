@@ -1,6 +1,6 @@
 <html>
 <title> home.jsp </title>
 <body>
-    Hello, JSP
+    Manual java-based servlet initialization
 </body>
 </html>
