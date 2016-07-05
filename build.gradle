@@ -1,0 +1,32 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'war'
+
+sourceCompatibility = 1.8
+
+def tomcatDir = 'tomcat'
+def webappName = 'mvc'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile ([group: 'junit', name: 'junit', version: '4.11'],
+            [group: 'org.springframework', name: 'spring-test', version: '4.3.0.RELEASE'],
+            "javax.servlet:javax.servlet-api:3.1.0")
+    compile ([group: 'org.springframework', name: 'spring-core', version: '4.3.0.RELEASE'],
+             [group: 'org.springframework', name: 'spring-webmvc', version: '4.3.0.RELEASE'],
+             [group: 'org.springframework', name: 'spring-web', version: '4.3.0.RELEASE'],
+            "javax.servlet:javax.servlet-api:3.1.0")
+}
+
+task deployTomcat(type: Copy) {
+    from 'build/libs/'
+    into tomcatDir + '/webapps'
+    include '*.war'
+    rename (".*\\.war", webappName + '.war')
+    file(tomcatDir + '/webapps/' + webappName).delete()
+}
+
+
