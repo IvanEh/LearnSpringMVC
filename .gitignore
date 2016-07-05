@@ -2,3 +2,6 @@
 .idea
 *.*swp
 .directory
+tomcat/logs
+tomcat/temp
+tomcat/webapps
