@@ -5,7 +5,7 @@ apply plugin: 'war'
 sourceCompatibility = 1.8
 
 def tomcatDir = 'tomcat'
-def webappName = 'mvc'
+def webappName = 'ROOT'
 
 repositories {
     mavenCentral()
