@@ -2,9 +2,13 @@ package com.gmail.at.ivanehreshi.controllers;
 
 import com.gmail.at.ivanehreshi.domain.User;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.View;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,23 +26,44 @@ import java.util.Map;
 @RequestMapping("/user")
 public class UserController {
     Map<String, User> users = new HashMap<>();
-
-    @GetMapping("/{userName}")
-    @ResponseBody
-    public String userInfo(@PathVariable("userName") String name) {
-        User user = users.get(name);
-        if(user == null)
-            return "No such user";
-        return user.toString();
-    }
-    
-    @GetMapping("/new/{userName}/{password},{age:[0-9]+}")
-    public String addUser(@PathVariable("userName") String userName,
-                          @PathVariable("password") String password,
-                          @PathVariable("age") int age) {
-        User user = new User(userName, password, age);
+    {
+        User user = new User("fake_user", "passw0rd", 19);
         users.put(user.getName(), user);
-        return "redirect:/user/" + userName;
+    }
+
+    /**
+     * Invoked before mapping
+     */
+    @ModelAttribute(value = "date")
+    public String date() {
+        return new Date().toString();
+    }
+
+    @GetMapping
+    public String users(Model model) {
+        model.addAttribute("userNamesStr", String.join(", ", users.keySet()));
+        return "users";
+    }
+
+    /**
+     *  "date" property still available in jsp
+     *  "user" can be accessed too(e.g. user.name)
+     */
+    @GetMapping("/{user}")
+    public ModelAndView userInfo(@PathVariable String user) {
+        return new ModelAndView("user", "user", users.get(user));
+    }
+
+    @GetMapping("/new")
+    public String addUserGet() {
+        return "newUser";
+    }
+
+    @PostMapping("/new")
+    public String addUser(@RequestParam String name, @RequestParam int age) {
+        User newUser = new User(name, "password", age);
+        users.put(newUser.getName(), newUser);
+        return "redirect:/user/" + name;
     }
 
 }
