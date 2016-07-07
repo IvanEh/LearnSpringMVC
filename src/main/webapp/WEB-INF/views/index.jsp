@@ -16,5 +16,12 @@
         <li/> <a href="dummy/q">/dummy/q</a>
         <li/> <a href="user/ghostUser">/user/ghostUser</a>
     </ul>
+    <hr/>
+    <ul>
+        <li/> <a href="media/txt">media/txt</a>
+        <li/> <a href="media/html">media/html</a>
+        <li/> <a href="media/request-css">media/request-css</a>
+        <li/> <a href="media/css-demo">media/css-demo</a>
+    </ul>
 </body>
 </html>
