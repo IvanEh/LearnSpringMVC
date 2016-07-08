@@ -6,6 +6,7 @@
 </head>
 <body>
     redirect string: ${redirectStr}<br/>
-    <a href="/redirectDemo/redirect">redirect me</a>
+    <a href="/redirectDemo/redirect">redirect me</a><br/>
+    <a href="/redirectDemo/redirectFlash">redirect with flash attribute </a>
 </body>
 </html>
