@@ -16,6 +16,7 @@ public class HomeController {
 
     @GetMapping("/index.html")
     public String index() {
+        System.out.println("TEST");
         return "index";
     }
 
