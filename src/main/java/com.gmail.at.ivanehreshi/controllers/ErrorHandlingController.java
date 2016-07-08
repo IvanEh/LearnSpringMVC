@@ -3,6 +3,7 @@ package com.gmail.at.ivanehreshi.controllers;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindException;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -14,6 +15,11 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/error")
 public class ErrorHandlingController {
 
+    @GetMapping
+    public String index() {
+        return "error/index";
+    }
+
     /**
      * Display custom page with 403 response status
      */
@@ -22,7 +28,6 @@ public class ErrorHandlingController {
     public String forbidden() {
         return "error/forbidden";
     }
-
 
     /**
      * Default page with 400 response status

@@ -24,5 +24,10 @@
         <li/> <a href="/user"> /user </a>
         <li/> <a href="/user/new"> /user/new </a>
         <li/> <a href="/user/fakeUser"> /user </a>
+    </ul>
+    <hr/>
+     <ul>
+        <li/> <a href="/error"> /error </a>
+     </ul>
 </body>
 </html>
